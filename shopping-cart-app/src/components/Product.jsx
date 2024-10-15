@@ -1,8 +1,15 @@
 import { useCart } from "../contexts/CartProvider";
 
 export function Product({ id, title, price, img }) {
-  const { addItemToCart } = useCart();
+  const { addItemToCart, cart } = useCart();
   function handleAdd() {
+    for(let item of cart){
+      if(item.id ===id){
+        alert("item already inside cart")
+        return
+      }
+    }
+
     const newCartItem = {
       id: id,
       title: title,
@@ -13,12 +20,25 @@ export function Product({ id, title, price, img }) {
     addItemToCart(newCartItem);
   }
   return (
-    <>
-      <h3>id:{id}</h3>
-      <h3>title:{title}</h3>
-      <h3>price:{price}</h3>
-      <img src={img} />
+    <div
+      style={{
+        margin: "1rem",
+        padding: "1rem",
+        border: "2px solid gray",
+      }}
+    >
+      <p>id:{id}</p>
+      <img
+        src={img}
+        style={{
+          height: "200px",
+          width: "200px",
+        }}
+      />
+      <p>title:{title}</p>
+      <p>price:{price}</p>
+
       <button onClick={handleAdd}>Add to cart</button>
-    </>
+    </div>
   );
 }
