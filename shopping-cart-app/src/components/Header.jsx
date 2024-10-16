@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Cart } from "./Cart";
 import { Modal } from "./UI/Modal";
+import style from "./Header.module.css"
 export function Header() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   function closeModal() {
